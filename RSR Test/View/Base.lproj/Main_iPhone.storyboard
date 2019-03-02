@@ -49,6 +49,9 @@
                     <navigationItem key="navigationItem" title="RSR Revalidatieservice" id="nmU-F0-DXU">
                         <barButtonItem key="rightBarButtonItem" image="ic_over_normal" style="done" id="aU5-Qw-mgK">
                             <color key="tintColor" red="0.80236142873764038" green="0.83994609117507935" blue="0.1420498788356781" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="infoButtonPressed:" destination="BYZ-38-t0r" id="WdA-3E-Nco"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
@@ -92,9 +95,12 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mq5-HV-fZB">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                             </mapView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="popup_back" translatesAutoresizingMaskIntoConstraints="NO" id="15i-k8-HFr">
+                                <rect key="frame" x="65" y="312" width="284" height="184"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCu-NY-6b1">
-                                <rect key="frame" x="99" y="643" width="216" height="51"/>
-                                <state key="normal" title="Bel RSR nu" backgroundImage="btn_bel_normal">
+                                <rect key="frame" x="99" y="435" width="216" height="51"/>
+                                <state key="normal" title="Bel nu" backgroundImage="btn_bel_normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -102,25 +108,82 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_call" translatesAutoresizingMaskIntoConstraints="NO" id="3xB-P6-Zyh">
-                                <rect key="frame" x="114" y="650.5" width="30" height="36"/>
+                                <rect key="frame" x="114" y="442.5" width="30" height="36"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Belkosten" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJD-pI-QBq">
+                                <rect key="frame" x="166" y="351.5" width="82" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voor dit nummer betaalt u uw gebruikelijke belkosten." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eld-xi-cIT">
+                                <rect key="frame" x="107" y="387.5" width="200" height="33.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="EFo-Ro-acq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IqY-Ms-g06">
+                                <rect key="frame" x="65" y="286" width="106" height="26"/>
+                                <state key="normal" title="Annuleren" backgroundImage="annuleren_normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelPopupButtonPressed:" destination="KYU-7e-cBm" eventType="touchUpInside" id="T2Q-fs-2Wj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGP-op-oW1">
+                                <rect key="frame" x="64" y="695" width="286" height="54"/>
+                                <state key="normal" title="Bel RSR nu" backgroundImage="btn_normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="showPopupButtonPressed:" destination="KYU-7e-cBm" eventType="touchUpInside" id="1vo-Ry-oH2"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_phone" translatesAutoresizingMaskIntoConstraints="NO" id="Q5m-zV-YCH">
+                                <rect key="frame" x="79" y="702.5" width="32" height="39"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="eld-xi-cIT" firstAttribute="centerY" secondItem="QNq-Yl-qK0" secondAttribute="centerY" id="0yW-4R-4Rp"/>
                             <constraint firstItem="lCu-NY-6b1" firstAttribute="centerX" secondItem="QNq-Yl-qK0" secondAttribute="centerX" id="1I1-Tm-40j"/>
+                            <constraint firstItem="Q5m-zV-YCH" firstAttribute="height" secondItem="TGP-op-oW1" secondAttribute="height" constant="-15" id="816-r0-372"/>
+                            <constraint firstItem="eld-xi-cIT" firstAttribute="centerX" secondItem="QNq-Yl-qK0" secondAttribute="centerX" id="CTE-5Y-a5U"/>
                             <constraint firstItem="Ct6-40-AB4" firstAttribute="trailing" secondItem="mq5-HV-fZB" secondAttribute="trailing" id="GU1-7P-KEr"/>
+                            <constraint firstItem="lCu-NY-6b1" firstAttribute="bottom" secondItem="15i-k8-HFr" secondAttribute="bottom" constant="-10" id="IzC-2O-h2D"/>
                             <constraint firstItem="mq5-HV-fZB" firstAttribute="top" secondItem="Ct6-40-AB4" secondAttribute="top" id="J7n-fn-tjU"/>
+                            <constraint firstItem="eld-xi-cIT" firstAttribute="top" secondItem="KJD-pI-QBq" secondAttribute="bottom" constant="15" id="MRc-N3-K33"/>
+                            <constraint firstItem="15i-k8-HFr" firstAttribute="top" secondItem="IqY-Ms-g06" secondAttribute="bottom" id="NM4-Dw-etR"/>
                             <constraint firstItem="mq5-HV-fZB" firstAttribute="leading" secondItem="Ct6-40-AB4" secondAttribute="leading" id="QMR-FH-1cF"/>
+                            <constraint firstItem="KJD-pI-QBq" firstAttribute="centerX" secondItem="QNq-Yl-qK0" secondAttribute="centerX" id="VYM-N6-hEx"/>
+                            <constraint firstItem="15i-k8-HFr" firstAttribute="centerX" secondItem="QNq-Yl-qK0" secondAttribute="centerX" id="YBH-2J-7mP"/>
+                            <constraint firstItem="Q5m-zV-YCH" firstAttribute="leading" secondItem="TGP-op-oW1" secondAttribute="leading" constant="15" id="ab9-c0-Uuu"/>
+                            <constraint firstItem="IqY-Ms-g06" firstAttribute="leading" secondItem="15i-k8-HFr" secondAttribute="leading" id="bbS-gJ-QJ8"/>
                             <constraint firstItem="3xB-P6-Zyh" firstAttribute="height" secondItem="lCu-NY-6b1" secondAttribute="height" constant="-15" id="caR-jy-uqe"/>
                             <constraint firstItem="3xB-P6-Zyh" firstAttribute="leading" secondItem="lCu-NY-6b1" secondAttribute="leading" constant="15" id="gOu-Fb-D8P"/>
                             <constraint firstItem="3xB-P6-Zyh" firstAttribute="centerY" secondItem="lCu-NY-6b1" secondAttribute="centerY" id="hFB-F9-ps3"/>
-                            <constraint firstItem="Ct6-40-AB4" firstAttribute="bottom" secondItem="lCu-NY-6b1" secondAttribute="bottom" constant="80" id="hbx-tY-qs0"/>
+                            <constraint firstItem="TGP-op-oW1" firstAttribute="centerX" secondItem="QNq-Yl-qK0" secondAttribute="centerX" id="hg4-Ce-paG"/>
+                            <constraint firstItem="Ct6-40-AB4" firstAttribute="bottom" secondItem="TGP-op-oW1" secondAttribute="bottom" constant="25" id="mch-rL-WhY"/>
                             <constraint firstItem="mq5-HV-fZB" firstAttribute="bottom" secondItem="QNq-Yl-qK0" secondAttribute="bottom" id="ote-Q7-TC8"/>
+                            <constraint firstItem="15i-k8-HFr" firstAttribute="centerY" secondItem="QNq-Yl-qK0" secondAttribute="centerY" id="rjS-Pi-Osh"/>
+                            <constraint firstItem="Q5m-zV-YCH" firstAttribute="centerY" secondItem="TGP-op-oW1" secondAttribute="centerY" id="vdZ-Js-K4U"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ct6-40-AB4"/>
                     </view>
                     <connections>
+                        <outlet property="callButton" destination="lCu-NY-6b1" id="rdP-iD-PPk"/>
+                        <outlet property="cancelPopupButton" destination="IqY-Ms-g06" id="uJj-0e-Fpa"/>
                         <outlet property="mapView" destination="mq5-HV-fZB" id="chl-81-6ME"/>
+                        <outlet property="popupBack" destination="15i-k8-HFr" id="5LO-ED-6lL"/>
+                        <outlet property="popupDescription" destination="eld-xi-cIT" id="lnl-pB-C4B"/>
+                        <outlet property="popupPhoneImageView" destination="3xB-P6-Zyh" id="QVU-h9-QXp"/>
+                        <outlet property="popupTitle" destination="KJD-pI-QBq" id="PCw-Gp-SP7"/>
+                        <outlet property="showPopupButton" destination="TGP-op-oW1" id="wMI-pB-Kad"/>
+                        <outlet property="showPopupPhoneImageView" destination="Q5m-zV-YCH" id="As3-TY-Pqe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5KX-B2-cR0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -129,11 +192,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="annuleren_normal" width="106" height="26"/>
         <image name="btn_bel_normal" width="216" height="48"/>
         <image name="btn_normal" width="286" height="54"/>
         <image name="ic_attention" width="42" height="36"/>
         <image name="ic_call" width="30" height="36"/>
         <image name="ic_over_normal" width="30" height="30"/>
+        <image name="ic_phone" width="32" height="36"/>
         <image name="img_background_ipad" width="768" height="1024"/>
+        <image name="popup_back" width="284" height="184"/>
     </resources>
 </document>

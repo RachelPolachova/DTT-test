@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC4B8DF62226DFCC007F0CE7 /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4B8DF52226DFCC007F0CE7 /* AddressView.swift */; };
+		CC610ACE222A83D700F7C2C8 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC610ACD222A83D700F7C2C8 /* Address.swift */; };
+		CC610AD0222A87DA00F7C2C8 /* NotificationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC610ACF222A87DA00F7C2C8 /* NotificationExtensions.swift */; };
+		CC610AD2222AF3D100F7C2C8 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC610AD1222AF3D100F7C2C8 /* Main_iPad.storyboard */; };
 		CC96E200222595500083F6C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC96E1FF222595500083F6C8 /* AppDelegate.swift */; };
 		CC96E202222595500083F6C8 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC96E201222595500083F6C8 /* MainMenuViewController.swift */; };
-		CC96E205222595500083F6C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC96E203222595500083F6C8 /* Main.storyboard */; };
+		CC96E205222595500083F6C8 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC96E203222595500083F6C8 /* Main_iPhone.storyboard */; };
 		CC96E207222595530083F6C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC96E206222595530083F6C8 /* Assets.xcassets */; };
 		CC96E20A222595530083F6C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC96E208222595530083F6C8 /* LaunchScreen.storyboard */; };
 		CC96E2122225A1FB0083F6C8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC96E2112225A1FB0083F6C8 /* MapViewController.swift */; };
@@ -17,10 +21,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC4B8DF52226DFCC007F0CE7 /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
+		CC610ACD222A83D700F7C2C8 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		CC610ACF222A87DA00F7C2C8 /* NotificationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtensions.swift; sourceTree = "<group>"; };
+		CC610AD1222AF3D100F7C2C8 /* Main_iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		CC96E1FC222595500083F6C8 /* RSR Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RSR Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC96E1FF222595500083F6C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC96E201222595500083F6C8 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
-		CC96E204222595500083F6C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CC96E204222595500083F6C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		CC96E206222595530083F6C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC96E209222595530083F6C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC96E20B222595530083F6C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -39,6 +47,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CC4B8DF02226CD4B007F0CE7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CC96E203222595500083F6C8 /* Main_iPhone.storyboard */,
+				CC96E208222595530083F6C8 /* LaunchScreen.storyboard */,
+				CC4B8DF52226DFCC007F0CE7 /* AddressView.swift */,
+				CC610AD1222AF3D100F7C2C8 /* Main_iPad.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CC610ACC222A83C600F7C2C8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CC610ACD222A83D700F7C2C8 /* Address.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		CC96E1F3222595500083F6C8 = {
 			isa = PBXGroup;
 			children = (
@@ -59,29 +86,30 @@
 			isa = PBXGroup;
 			children = (
 				CC96E2142225A4BD0083F6C8 /* Extensions */,
-				CC96E2132225A20A0083F6C8 /* View */,
+				CC610ACC222A83C600F7C2C8 /* Model */,
+				CC4B8DF02226CD4B007F0CE7 /* View */,
+				CC96E2132225A20A0083F6C8 /* Controllers */,
 				CC96E1FF222595500083F6C8 /* AppDelegate.swift */,
-				CC96E203222595500083F6C8 /* Main.storyboard */,
 				CC96E206222595530083F6C8 /* Assets.xcassets */,
-				CC96E208222595530083F6C8 /* LaunchScreen.storyboard */,
 				CC96E20B222595530083F6C8 /* Info.plist */,
 			);
 			path = "RSR Test";
 			sourceTree = "<group>";
 		};
-		CC96E2132225A20A0083F6C8 /* View */ = {
+		CC96E2132225A20A0083F6C8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				CC96E201222595500083F6C8 /* MainMenuViewController.swift */,
 				CC96E2112225A1FB0083F6C8 /* MapViewController.swift */,
 			);
-			path = View;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		CC96E2142225A4BD0083F6C8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				CC96E2152225A4D60083F6C8 /* UIViewControllerExtensions.swift */,
+				CC610ACF222A87DA00F7C2C8 /* NotificationExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -145,8 +173,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC96E20A222595530083F6C8 /* LaunchScreen.storyboard in Resources */,
+				CC610AD2222AF3D100F7C2C8 /* Main_iPad.storyboard in Resources */,
 				CC96E207222595530083F6C8 /* Assets.xcassets in Resources */,
-				CC96E205222595500083F6C8 /* Main.storyboard in Resources */,
+				CC96E205222595500083F6C8 /* Main_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,18 +190,21 @@
 				CC96E202222595500083F6C8 /* MainMenuViewController.swift in Sources */,
 				CC96E2122225A1FB0083F6C8 /* MapViewController.swift in Sources */,
 				CC96E200222595500083F6C8 /* AppDelegate.swift in Sources */,
+				CC610ACE222A83D700F7C2C8 /* Address.swift in Sources */,
+				CC610AD0222A87DA00F7C2C8 /* NotificationExtensions.swift in Sources */,
+				CC4B8DF62226DFCC007F0CE7 /* AddressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CC96E203222595500083F6C8 /* Main.storyboard */ = {
+		CC96E203222595500083F6C8 /* Main_iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CC96E204222595500083F6C8 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 		CC96E208222595530083F6C8 /* LaunchScreen.storyboard */ = {
@@ -316,7 +348,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rachelpolachova.RSR-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -334,7 +366,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rachelpolachova.RSR-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
