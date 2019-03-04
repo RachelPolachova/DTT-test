@@ -10,7 +10,12 @@ import Foundation
 
 struct Address {
     var streetName: String
-    var country: String
     var city: String
     var postalCode: String
+    
+    init(streetName: String, city: String, postalCode: String) {
+        self.streetName = streetName
+        self.city = city
+        self.postalCode = postalCode
+    }
 }

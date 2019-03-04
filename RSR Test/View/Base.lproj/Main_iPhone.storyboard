@@ -98,7 +98,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="popup_back" translatesAutoresizingMaskIntoConstraints="NO" id="15i-k8-HFr">
                                 <rect key="frame" x="65" y="312" width="284" height="184"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCu-NY-6b1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCu-NY-6b1">
                                 <rect key="frame" x="99" y="435" width="216" height="51"/>
                                 <state key="normal" title="Bel nu" backgroundImage="btn_bel_normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -119,7 +119,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voor dit nummer betaalt u uw gebruikelijke belkosten." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eld-xi-cIT">
                                 <rect key="frame" x="107" y="387.5" width="200" height="33.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="EFo-Ro-acq"/>
+                                    <constraint firstAttribute="width" constant="200" id="yxv-TQ-1v6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -134,7 +134,7 @@
                                     <action selector="cancelPopupButtonPressed:" destination="KYU-7e-cBm" eventType="touchUpInside" id="T2Q-fs-2Wj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGP-op-oW1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGP-op-oW1">
                                 <rect key="frame" x="64" y="695" width="286" height="54"/>
                                 <state key="normal" title="Bel RSR nu" backgroundImage="btn_normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -152,6 +152,7 @@
                             <constraint firstItem="eld-xi-cIT" firstAttribute="centerY" secondItem="QNq-Yl-qK0" secondAttribute="centerY" id="0yW-4R-4Rp"/>
                             <constraint firstItem="lCu-NY-6b1" firstAttribute="centerX" secondItem="QNq-Yl-qK0" secondAttribute="centerX" id="1I1-Tm-40j"/>
                             <constraint firstItem="Q5m-zV-YCH" firstAttribute="height" secondItem="TGP-op-oW1" secondAttribute="height" constant="-15" id="816-r0-372"/>
+                            <constraint firstItem="Ct6-40-AB4" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="IqY-Ms-g06" secondAttribute="trailing" symbolic="YES" id="857-Kb-3GS"/>
                             <constraint firstItem="eld-xi-cIT" firstAttribute="centerX" secondItem="QNq-Yl-qK0" secondAttribute="centerX" id="CTE-5Y-a5U"/>
                             <constraint firstItem="Ct6-40-AB4" firstAttribute="trailing" secondItem="mq5-HV-fZB" secondAttribute="trailing" id="GU1-7P-KEr"/>
                             <constraint firstItem="lCu-NY-6b1" firstAttribute="bottom" secondItem="15i-k8-HFr" secondAttribute="bottom" constant="-10" id="IzC-2O-h2D"/>

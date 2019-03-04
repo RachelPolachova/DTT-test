@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AddressCallout" customModule="RSR_Test" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address_back" translatesAutoresizingMaskIntoConstraints="NO" id="p5L-Pg-uOz">
+                    <rect key="frame" x="87.5" y="4" width="200" height="172"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading ..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M68-Pu-i8K">
+                    <rect key="frame" x="95" y="66.5" width="185" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uw locatie:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLg-qu-CIx">
+                    <rect key="frame" x="142" y="14" width="91" height="20.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Onthoud deze location voor het telefoonegesperk" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FG9-jE-w70">
+                    <rect key="frame" x="87.5" y="117" width="200" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="8JH-Sa-nEv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="p5L-Pg-uOz" firstAttribute="bottom" secondItem="FG9-jE-w70" secondAttribute="bottom" constant="30" id="2N1-Ai-0Z3"/>
+                <constraint firstItem="p5L-Pg-uOz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Aox-RW-j7m"/>
+                <constraint firstItem="FG9-jE-w70" firstAttribute="width" secondItem="p5L-Pg-uOz" secondAttribute="width" id="Gqa-gm-ixi"/>
+                <constraint firstItem="M68-Pu-i8K" firstAttribute="centerX" secondItem="p5L-Pg-uOz" secondAttribute="centerX" id="LoC-sm-kqb"/>
+                <constraint firstItem="M68-Pu-i8K" firstAttribute="width" secondItem="p5L-Pg-uOz" secondAttribute="width" constant="-15" id="LsJ-95-9Ix"/>
+                <constraint firstItem="p5L-Pg-uOz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="VVZ-wd-LFn"/>
+                <constraint firstItem="oLg-qu-CIx" firstAttribute="centerX" secondItem="p5L-Pg-uOz" secondAttribute="centerX" id="Zdm-ha-yhd"/>
+                <constraint firstItem="FG9-jE-w70" firstAttribute="centerX" secondItem="p5L-Pg-uOz" secondAttribute="centerX" id="gVQ-VL-4Dq"/>
+                <constraint firstItem="oLg-qu-CIx" firstAttribute="top" secondItem="p5L-Pg-uOz" secondAttribute="top" constant="10" id="xSH-hH-LCP"/>
+                <constraint firstItem="M68-Pu-i8K" firstAttribute="centerY" secondItem="p5L-Pg-uOz" secondAttribute="centerY" constant="-15" id="yXo-2B-jO5"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="addressLabel" destination="M68-Pu-i8K" id="Yuv-8a-Gx8"/>
+            </connections>
+            <point key="canvasLocation" x="39.200000000000003" y="20.689655172413794"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="address_back" width="204" height="172"/>
+    </resources>
+</document>

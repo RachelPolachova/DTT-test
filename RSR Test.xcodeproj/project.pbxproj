@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CC4B8DF62226DFCC007F0CE7 /* AddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4B8DF52226DFCC007F0CE7 /* AddressView.swift */; };
 		CC610ACE222A83D700F7C2C8 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC610ACD222A83D700F7C2C8 /* Address.swift */; };
 		CC610AD0222A87DA00F7C2C8 /* NotificationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC610ACF222A87DA00F7C2C8 /* NotificationExtensions.swift */; };
 		CC610AD2222AF3D100F7C2C8 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC610AD1222AF3D100F7C2C8 /* Main_iPad.storyboard */; };
@@ -18,10 +17,13 @@
 		CC96E20A222595530083F6C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC96E208222595530083F6C8 /* LaunchScreen.storyboard */; };
 		CC96E2122225A1FB0083F6C8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC96E2112225A1FB0083F6C8 /* MapViewController.swift */; };
 		CC96E2162225A4D60083F6C8 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC96E2152225A4D60083F6C8 /* UIViewControllerExtensions.swift */; };
+		CCB12727222D5147001FDAF3 /* AddressAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB12726222D5147001FDAF3 /* AddressAnnotation.swift */; };
+		CCB1272E222D72E3001FDAF3 /* AddressCallout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB1272D222D72E3001FDAF3 /* AddressCallout.swift */; };
+		CCB12730222D7362001FDAF3 /* AddressCallout.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCB1272F222D7362001FDAF3 /* AddressCallout.xib */; };
+		CCB12732222D75BE001FDAF3 /* AddressAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB12731222D75BE001FDAF3 /* AddressAnnotationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CC4B8DF52226DFCC007F0CE7 /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
 		CC610ACD222A83D700F7C2C8 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		CC610ACF222A87DA00F7C2C8 /* NotificationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtensions.swift; sourceTree = "<group>"; };
 		CC610AD1222AF3D100F7C2C8 /* Main_iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
@@ -34,6 +36,10 @@
 		CC96E20B222595530083F6C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC96E2112225A1FB0083F6C8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CC96E2152225A4D60083F6C8 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		CCB12726222D5147001FDAF3 /* AddressAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressAnnotation.swift; sourceTree = "<group>"; };
+		CCB1272D222D72E3001FDAF3 /* AddressCallout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCallout.swift; sourceTree = "<group>"; };
+		CCB1272F222D7362001FDAF3 /* AddressCallout.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressCallout.xib; sourceTree = "<group>"; };
+		CCB12731222D75BE001FDAF3 /* AddressAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressAnnotationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +58,11 @@
 			children = (
 				CC96E203222595500083F6C8 /* Main_iPhone.storyboard */,
 				CC96E208222595530083F6C8 /* LaunchScreen.storyboard */,
-				CC4B8DF52226DFCC007F0CE7 /* AddressView.swift */,
 				CC610AD1222AF3D100F7C2C8 /* Main_iPad.storyboard */,
+				CCB12726222D5147001FDAF3 /* AddressAnnotation.swift */,
+				CCB1272D222D72E3001FDAF3 /* AddressCallout.swift */,
+				CCB1272F222D7362001FDAF3 /* AddressCallout.xib */,
+				CCB12731222D75BE001FDAF3 /* AddressAnnotationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -175,6 +184,7 @@
 				CC96E20A222595530083F6C8 /* LaunchScreen.storyboard in Resources */,
 				CC610AD2222AF3D100F7C2C8 /* Main_iPad.storyboard in Resources */,
 				CC96E207222595530083F6C8 /* Assets.xcassets in Resources */,
+				CCB12730222D7362001FDAF3 /* AddressCallout.xib in Resources */,
 				CC96E205222595500083F6C8 /* Main_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,10 +199,12 @@
 				CC96E2162225A4D60083F6C8 /* UIViewControllerExtensions.swift in Sources */,
 				CC96E202222595500083F6C8 /* MainMenuViewController.swift in Sources */,
 				CC96E2122225A1FB0083F6C8 /* MapViewController.swift in Sources */,
+				CCB12727222D5147001FDAF3 /* AddressAnnotation.swift in Sources */,
 				CC96E200222595500083F6C8 /* AppDelegate.swift in Sources */,
 				CC610ACE222A83D700F7C2C8 /* Address.swift in Sources */,
 				CC610AD0222A87DA00F7C2C8 /* NotificationExtensions.swift in Sources */,
-				CC4B8DF62226DFCC007F0CE7 /* AddressView.swift in Sources */,
+				CCB12732222D75BE001FDAF3 /* AddressAnnotationView.swift in Sources */,
+				CCB1272E222D72E3001FDAF3 /* AddressCallout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,7 +360,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rachelpolachova.RSR-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -366,7 +378,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rachelpolachova.RSR-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
