@@ -10,6 +10,7 @@ import UIKit
 
 class MainMenuViewController: UIViewController {
 
+    @IBOutlet weak var infoButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -18,12 +19,13 @@ class MainMenuViewController: UIViewController {
     func setupUI() {
         
         if UIDevice.current.userInterfaceIdiom == .phone {
-            self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "navig_bar_back"), for: UIBarMetrics.default)
+            self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "navig_bar_back")?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .stretch), for: UIBarMetrics.default)
         } else {
-            self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "navig_bar_back_ipad"), for: UIBarMetrics.default)
+            self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "navig_bar_back_ipad")?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .stretch), for: UIBarMetrics.default)
         }
     }
-    @IBAction func infoButtonPressed(_ sender: Any) {
+    @IBAction func infoButtonPressed(_ sender: UIButton) {
+        
         let alert = UIAlertController(title: "Om gebruik te mäken van deze app, dient u het privacybeleid te accepteren.", message: "", preferredStyle: .alert)
         let acceptAction = UIAlertAction(title: "Accepteren", style: .default)
         let privacyPolicyAction = UIAlertAction(title: "Ga naar privacybeleid", style: .default) { (action) in

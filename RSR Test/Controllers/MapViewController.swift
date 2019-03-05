@@ -15,14 +15,10 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var popupBack: UIImageView!
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var callButton: UIButton!
-    @IBOutlet weak var popupPhoneImageView: UIImageView!
-    @IBOutlet weak var popupTitle: UILabel!
-    @IBOutlet weak var popupDescription: UILabel!
-    @IBOutlet weak var cancelPopupButton: UIButton!
     @IBOutlet weak var showPopupButton: UIButton!
     @IBOutlet weak var showPopupPhoneImageView: UIImageView!
     
+    @IBOutlet weak var popupView: UIView!
     let locationManager = CLLocationManager()
     var previousLocation: CLLocation?
     let userAnnotation = AddressAnnotation()
@@ -31,11 +27,8 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        mapView.delegate = self
-        mapView.showsUserLocation = true
+        setupMapViewDelegate()
         checkLocationServices()
-        mapView.showsUserLocation = false
-        popupToggle(hide: true)
     }
     
     @objc func backButtonPressed(sender: UIBarButtonItem) {
@@ -49,9 +42,35 @@ class MapViewController: UIViewController {
         let backButton = UIBarButtonItem(image: UIImage(named: "terug_normal"), style: .plain, target: self, action: #selector(backButtonPressed(sender:)))
         backButton.tintColor = UIColor(red: 188/255, green: 211/255, blue: 3/255, alpha: 1)
         self.navigationItem.leftBarButtonItem = backButton
+        self.popupView.alpha = 0
     }
     
     //    MARK: - Popup
+    
+    func popupToggle(hide: Bool) {
+        guard UIDevice.current.userInterfaceIdiom == .phone else { return }
+        
+        UIView.animate(withDuration: 0.3, delay: 0.3, options: .curveEaseInOut, animations: {
+            if hide {
+                self.popupView.alpha = 0
+                self.showPopupButton.alpha = 1
+                self.showPopupPhoneImageView.alpha = 1
+            } else {
+                self.mapView.deselectAnnotation(self.userAnnotation, animated: true)
+                self.mapView.removeAnnotation(self.userAnnotation)
+                self.popupView.alpha = 1
+                self.showPopupButton.alpha = 0
+                self.showPopupPhoneImageView.alpha = 0
+            }
+        }) { (success) in
+            print("succ \(success)")
+            if hide {
+                self.mapView.addAnnotation(self.userAnnotation)
+                self.mapView.selectAnnotation(self.userAnnotation, animated: true)
+            }
+        }
+        
+    }
     
     @IBAction func showPopupButtonPressed(_ sender: Any) {
         popupToggle(hide: false)
@@ -69,33 +88,17 @@ class MapViewController: UIViewController {
         popupToggle(hide: true)
     }
     
-    func popupToggle(hide: Bool) {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            
-            if hide {
-                mapView.addAnnotation(userAnnotation)
-                mapView.selectAnnotation(userAnnotation, animated: true)
-            } else {
-                mapView.deselectAnnotation(userAnnotation, animated: true)
-                mapView.removeAnnotation(userAnnotation)
-            }
-            
-            popupBack.isHidden = hide
-            callButton.isHidden = hide
-            popupPhoneImageView.isHidden = hide
-            popupTitle.isHidden = hide
-            popupDescription.isHidden = hide
-            cancelPopupButton.isHidden = hide
-            
-            showPopupButton.isHidden = !hide
-            showPopupPhoneImageView.isHidden = !hide
-        }
-    }
+    
     
     //    MARK: - Map UI methods
     
+    func setupMapViewDelegate() {
+        mapView.delegate = self
+        mapView.showsUserLocation = false
+    }
+    
     func setRegion(location: CLLocation) {
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude), latitudinalMeters: 300, longitudinalMeters: 300)
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude), latitudinalMeters: 100, longitudinalMeters: 100)
         self.mapView.setRegion(region, animated: true)
     }
     
@@ -131,7 +134,7 @@ class MapViewController: UIViewController {
         case .restricted:
             presentPermissionAlert()
         case .authorizedAlways:
-            break
+            locationManager.startUpdatingLocation()
         }
     }
     
@@ -157,9 +160,8 @@ class MapViewController: UIViewController {
     func getStringAddress(address: Address?) -> String {
         if let address = address {
             return "\(address.streetName), \(address.postalCode), \(address.city)"
-        } else {
-            return ""
         }
+        return ""
     }
 
 }
@@ -191,6 +193,7 @@ extension MapViewController: CLLocationManagerDelegate {
             getAddress(location: location) {
                 self.userAnnotation.address = self.address
                 self.updateCallout()
+                self.setRegion(location: location)
             }
             setRegion(location: location)
             self.previousLocation = location
@@ -214,8 +217,8 @@ extension MapViewController: MKMapViewDelegate {
         if annotation is MKUserLocation {
             return nil
         }
-        
         var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
+        
         if annotationView == nil {
             annotationView = AddressAnnotationView(annotation: annotation, reuseIdentifier: "pin")
             annotationView?.canShowCallout = false
