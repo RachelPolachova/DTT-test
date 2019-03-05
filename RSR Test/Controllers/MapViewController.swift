@@ -17,10 +17,10 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var showPopupButton: UIButton!
     @IBOutlet weak var showPopupPhoneImageView: UIImageView!
-    
     @IBOutlet weak var popupView: UIView!
+    
     let locationManager = CLLocationManager()
-    var previousLocation: CLLocation?
+    var lastLocation: CLLocation?
     let userAnnotation = AddressAnnotation()
     var address = Address(streetName: "", city: "", postalCode: "")
     
@@ -32,7 +32,6 @@ class MapViewController: UIViewController {
     }
     
     @objc func backButtonPressed(sender: UIBarButtonItem) {
-        print("back button pressed")
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -42,7 +41,9 @@ class MapViewController: UIViewController {
         let backButton = UIBarButtonItem(image: UIImage(named: "terug_normal"), style: .plain, target: self, action: #selector(backButtonPressed(sender:)))
         backButton.tintColor = UIColor(red: 188/255, green: 211/255, blue: 3/255, alpha: 1)
         self.navigationItem.leftBarButtonItem = backButton
-        self.popupView.alpha = 0
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            self.popupView.alpha = 0
+        }
     }
     
     //    MARK: - Popup
@@ -63,7 +64,6 @@ class MapViewController: UIViewController {
                 self.showPopupPhoneImageView.alpha = 0
             }
         }) { (success) in
-            print("succ \(success)")
             if hide {
                 self.mapView.addAnnotation(self.userAnnotation)
                 self.mapView.selectAnnotation(self.userAnnotation, animated: true)
@@ -113,7 +113,7 @@ class MapViewController: UIViewController {
             setupLocationManager()
             checkLocationAuthorization()
         } else {
-            presentPermissionAlert()
+            presentLocationPermissionAlert()
         }
     }
     
@@ -128,11 +128,11 @@ class MapViewController: UIViewController {
         case .authorizedWhenInUse:
             locationManager.startUpdatingLocation()
         case .denied:
-            presentPermissionAlert()
+            presentLocationPermissionAlert()
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
-            presentPermissionAlert()
+            presentLocationPermissionAlert()
         case .authorizedAlways:
             locationManager.startUpdatingLocation()
         }
@@ -163,6 +163,57 @@ class MapViewController: UIViewController {
         }
         return ""
     }
+    
+    func updateAddress() {
+        if ConnectionManager.shared.isConnected() {
+            guard let location = lastLocation else { return }
+            
+            getAddress(location: location) {
+                self.userAnnotation.address = self.address
+                self.userAnnotation.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                self.updateCallout()
+                self.setRegion(location: location)
+            }
+        } else {
+            presentConnectionAlert()
+        }
+    }
+    
+    //    MARK: - Alert methods
+    
+    func presentLocationPermissionAlert() {
+        let alert = UIAlertController(title: "Location Permission", message: "Please authorize RSR to find your location while using the app", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default) { (action) in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+            
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    if !success {
+                        print("error while opening settings")
+                    }
+                })
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+        
+        present(alert,animated: true, completion: nil)
+    }
+    
+    func presentConnectionAlert() {
+        let alert = UIAlertController(title: "Internet error", message: "Unable to locate your address. Please check your internet connection", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let retryAction = UIAlertAction(title: "Retry", style: .default) { (action) in
+            self.updateAddress()
+        }
+        alert.addAction(cancelAction)
+        alert.addAction(retryAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
 
 }
 
@@ -174,29 +225,20 @@ extension MapViewController: CLLocationManagerDelegate {
         
         guard let location = locations.last  else { return }
         
-        if let previousLocation = previousLocation {
+        if let previousLocation = lastLocation {
         
-            if location.distance(from: previousLocation) > 10 {
-                getAddress(location: location) {
-                    self.userAnnotation.address = self.address
-                    self.userAnnotation.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-                    self.setRegion(location: location)
-                    self.updateCallout()
-                }
-                self.previousLocation = location
+            if location.distance(from: previousLocation) > 20 {
+                self.lastLocation = location
+                self.updateAddress()
             }
-        } else {
             
+        } else {
             userAnnotation.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             self.mapView.addAnnotation(self.userAnnotation)
             self.mapView.selectAnnotation(self.userAnnotation, animated: true)
-            getAddress(location: location) {
-                self.userAnnotation.address = self.address
-                self.updateCallout()
-                self.setRegion(location: location)
-            }
+            self.lastLocation = location
+            self.updateAddress()
             setRegion(location: location)
-            self.previousLocation = location
         }
         
 }
@@ -237,7 +279,6 @@ extension MapViewController: MKMapViewDelegate {
         let views = Bundle.main.loadNibNamed("AddressCallout", owner: nil, options: nil)
         let calloutView = views?[0] as! AddressCallout
         if let address = addressAnnotation.address {
-            print("address is: \(getStringAddress(address: address))")
             calloutView.addressLabel.text = getStringAddress(address: address)
         }
         calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
