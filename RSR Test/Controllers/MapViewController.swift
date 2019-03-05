@@ -78,16 +78,18 @@ class MapViewController: UIViewController {
     
     @IBAction func callButtonPressed(_ sender: Any) {
         popupToggle(hide: true)
-        
-        let phoneNumber = 9007788990
-        guard let url = URL(string: "tel://+31\(phoneNumber)") else { return }
-        UIApplication.shared.open(url)
+        makeCall()
     }
     
     @IBAction func cancelPopupButtonPressed(_ sender: Any) {
         popupToggle(hide: true)
     }
     
+    func makeCall() {
+        let phoneNumber = 9007788990
+        guard let url = URL(string: "tel://+31\(phoneNumber)") else { return }
+        UIApplication.shared.open(url)
+    }
     
     
     //    MARK: - Map UI methods
@@ -98,7 +100,7 @@ class MapViewController: UIViewController {
     }
     
     func setRegion(location: CLLocation) {
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude), latitudinalMeters: 100, longitudinalMeters: 100)
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude), latitudinalMeters: 300, longitudinalMeters: 300)
         self.mapView.setRegion(region, animated: true)
     }
     
@@ -147,7 +149,8 @@ class MapViewController: UIViewController {
                 print("Error in reverse geocode locaction: \(err.localizedDescription)")
             }
             guard let placemark = placemark?.first else { return }
-            let streetName = placemark.thoroughfare
+            let streetName = placemark.name
+            print("name: \(placemark.name), th: \(placemark.thoroughfare)")
             let city = placemark.locality
             let postalCode = placemark.postalCode
             self.address.streetName = streetName ?? ""
@@ -179,7 +182,7 @@ class MapViewController: UIViewController {
         }
     }
     
-    //    MARK: - Alert methods
+    //    MARK: - Alerts
     
     func presentLocationPermissionAlert() {
         let alert = UIAlertController(title: "Location Permission", message: "Please authorize RSR to find your location while using the app", preferredStyle: .alert)
@@ -287,14 +290,15 @@ extension MapViewController: MKMapViewDelegate {
         
     }
     
+    // didDeselect method is used for updating callout
+    // selectAnnotation "disables" user to hide callout
+    
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         if view.isKind(of: AddressAnnotationView.self) {
             for subview in view.subviews {
                 subview.removeFromSuperview()
             }
         }
-        // cannot really disable didDeselect methods, because thanks to this method, callout is updated.
-        // select here is used for showing callout right after disabling it (because updating) and also it "disables" user to hide callout
         self.mapView.selectAnnotation(userAnnotation, animated: false)
     }
     

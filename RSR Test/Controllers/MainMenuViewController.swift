@@ -16,6 +16,8 @@ class MainMenuViewController: UIViewController {
         setupUI()
     }
     
+    //    MARK: - UI methods
+    
     func setupUI() {
         
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -24,6 +26,9 @@ class MainMenuViewController: UIViewController {
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "navig_bar_back_ipad")?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .stretch), for: UIBarMetrics.default)
         }
     }
+    
+    //    MARK: - Info
+    
     @IBAction func infoButtonPressed(_ sender: UIButton) {
         
         let alert = UIAlertController(title: "Om gebruik te mäken van deze app, dient u het privacybeleid te accepteren.", message: "", preferredStyle: .alert)

@@ -20,7 +20,7 @@
                     <rect key="frame" x="87.5" y="4" width="200" height="172"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading address..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M68-Pu-i8K">
-                    <rect key="frame" x="95" y="66.5" width="185" height="17"/>
+                    <rect key="frame" x="102.5" y="66.5" width="170" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -46,7 +46,7 @@
                 <constraint firstItem="p5L-Pg-uOz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Aox-RW-j7m"/>
                 <constraint firstItem="FG9-jE-w70" firstAttribute="width" secondItem="p5L-Pg-uOz" secondAttribute="width" id="Gqa-gm-ixi"/>
                 <constraint firstItem="M68-Pu-i8K" firstAttribute="centerX" secondItem="p5L-Pg-uOz" secondAttribute="centerX" id="LoC-sm-kqb"/>
-                <constraint firstItem="M68-Pu-i8K" firstAttribute="width" secondItem="p5L-Pg-uOz" secondAttribute="width" constant="-15" id="LsJ-95-9Ix"/>
+                <constraint firstItem="M68-Pu-i8K" firstAttribute="width" secondItem="p5L-Pg-uOz" secondAttribute="width" constant="-30" id="LsJ-95-9Ix"/>
                 <constraint firstItem="p5L-Pg-uOz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="VVZ-wd-LFn"/>
                 <constraint firstItem="oLg-qu-CIx" firstAttribute="centerX" secondItem="p5L-Pg-uOz" secondAttribute="centerX" id="Zdm-ha-yhd"/>
                 <constraint firstItem="FG9-jE-w70" firstAttribute="centerX" secondItem="p5L-Pg-uOz" secondAttribute="centerX" id="gVQ-VL-4Dq"/>

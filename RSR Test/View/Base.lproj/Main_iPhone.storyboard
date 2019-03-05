@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_background_ipad" translatesAutoresizingMaskIntoConstraints="NO" id="gob-UF-uzU">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsH-fm-DW6">
                                 <rect key="frame" x="64" y="640" width="286" height="54"/>
@@ -38,7 +38,7 @@
                             <constraint firstItem="gob-UF-uzU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LJN-U8-nqv"/>
                             <constraint firstItem="gob-UF-uzU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="OAZ-iP-F42"/>
                             <constraint firstItem="0pv-Kp-T9j" firstAttribute="height" secondItem="lsH-fm-DW6" secondAttribute="height" constant="-15" id="WxY-wm-f6r"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gob-UF-uzU" secondAttribute="bottom" id="hjW-oq-6Vc"/>
+                            <constraint firstAttribute="bottom" secondItem="gob-UF-uzU" secondAttribute="bottom" id="hjW-oq-6Vc"/>
                             <constraint firstItem="lsH-fm-DW6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="l3j-iu-18f"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lsH-fm-DW6" secondAttribute="bottom" constant="80" id="p6T-Xx-2b5"/>
                             <constraint firstItem="0pv-Kp-T9j" firstAttribute="centerY" secondItem="lsH-fm-DW6" secondAttribute="centerY" id="s9E-Ov-hb6"/>
