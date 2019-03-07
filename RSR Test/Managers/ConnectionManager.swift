@@ -11,8 +11,6 @@ import SystemConfiguration
 
 class ConnectionManager {
     
-    static let shared = ConnectionManager()
-    
     func isConnected() -> Bool {
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)

@@ -13,26 +13,26 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AddressCallout" customModule="RSR_Test" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+            <rect key="frame" x="0.0" y="0.0" width="204" height="174"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="address_back" translatesAutoresizingMaskIntoConstraints="NO" id="p5L-Pg-uOz">
-                    <rect key="frame" x="87.5" y="4" width="200" height="172"/>
+                    <rect key="frame" x="2" y="1" width="200" height="172"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading address..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M68-Pu-i8K">
-                    <rect key="frame" x="102.5" y="66.5" width="170" height="17"/>
+                    <rect key="frame" x="17" y="63.5" width="170" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uw locatie:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLg-qu-CIx">
-                    <rect key="frame" x="142" y="14" width="91" height="20.5"/>
+                    <rect key="frame" x="56.5" y="11" width="91" height="20.5"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Onthoud deze locatie voor het telefoongesperk" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FG9-jE-w70">
-                    <rect key="frame" x="87.5" y="117" width="200" height="29"/>
+                    <rect key="frame" x="2" y="114" width="200" height="29"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="200" id="8JH-Sa-nEv"/>
                     </constraints>
@@ -58,7 +58,7 @@
             <connections>
                 <outlet property="addressLabel" destination="M68-Pu-i8K" id="Yuv-8a-Gx8"/>
             </connections>
-            <point key="canvasLocation" x="39.200000000000003" y="20.689655172413794"/>
+            <point key="canvasLocation" x="27.199999999999999" y="17.991004497751124"/>
         </view>
     </objects>
     <resources>

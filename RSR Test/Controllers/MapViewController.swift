@@ -13,16 +13,14 @@ import MapKit
 class MapViewController: UIViewController {
 
     
-    @IBOutlet weak var popupBack: UIImageView!
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var showPopupButton: UIButton!
-    @IBOutlet weak var showPopupPhoneImageView: UIImageView!
+    @IBOutlet weak var showPopupButton: UIView!
     @IBOutlet weak var popupView: UIView!
     
     let locationManager = CLLocationManager()
+    let alertManager = AlertManager()
     var lastLocation: CLLocation?
     let userAnnotation = AddressAnnotation()
-    var address = Address(streetName: "", city: "", postalCode: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,13 +53,11 @@ class MapViewController: UIViewController {
             if hide {
                 self.popupView.alpha = 0
                 self.showPopupButton.alpha = 1
-                self.showPopupPhoneImageView.alpha = 1
             } else {
                 self.mapView.deselectAnnotation(self.userAnnotation, animated: true)
                 self.mapView.removeAnnotation(self.userAnnotation)
                 self.popupView.alpha = 1
                 self.showPopupButton.alpha = 0
-                self.showPopupPhoneImageView.alpha = 0
             }
         }) { (success) in
             if hide {
@@ -96,6 +92,8 @@ class MapViewController: UIViewController {
     
     func setupMapViewDelegate() {
         mapView.delegate = self
+
+        // app is showing user's location as custom annotation
         mapView.showsUserLocation = false
     }
     
@@ -104,6 +102,11 @@ class MapViewController: UIViewController {
         self.mapView.setRegion(region, animated: true)
     }
     
+    
+    /// to update callout didSelect (mapView delegate) method must be triggered
+    ///
+    /// to prevent "multiple views" of callout, annotation has to be deselected first
+    /// select annotation method is called in didDeselect method (also to disable user to hide callout)
     func updateCallout() {
         self.mapView.deselectAnnotation(userAnnotation, animated: false)
     }
@@ -115,7 +118,7 @@ class MapViewController: UIViewController {
             setupLocationManager()
             checkLocationAuthorization()
         } else {
-            presentLocationPermissionAlert()
+            alertManager.presentLocationPermissionAlert(in: self)
         }
     }
     
@@ -126,15 +129,14 @@ class MapViewController: UIViewController {
     
     func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
-            
         case .authorizedWhenInUse:
             locationManager.startUpdatingLocation()
         case .denied:
-            presentLocationPermissionAlert()
+            alertManager.presentLocationPermissionAlert(in: self)
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
-            presentLocationPermissionAlert()
+            alertManager.presentLocationPermissionAlert(in: self)
         case .authorizedAlways:
             locationManager.startUpdatingLocation()
         }
@@ -142,81 +144,25 @@ class MapViewController: UIViewController {
     
     //    MARK: - Address methods
     
-    func getAddress(location: CLLocation, completion: @escaping ()->()) {
-        let geoCoder = CLGeocoder()
-        geoCoder.reverseGeocodeLocation(location) { (placemark, error) in
-            if let err = error {
-                print("Error in reverse geocode locaction: \(err.localizedDescription)")
-            }
-            guard let placemark = placemark?.first else { return }
-            let streetName = placemark.name
-            print("name: \(placemark.name), th: \(placemark.thoroughfare)")
-            let city = placemark.locality
-            let postalCode = placemark.postalCode
-            self.address.streetName = streetName ?? ""
-            self.address.city = city ?? ""
-            self.address.postalCode = postalCode ?? ""
-            completion()
-        }
-    }
-    
-    func getStringAddress(address: Address?) -> String {
-        if let address = address {
-            return "\(address.streetName), \(address.postalCode), \(address.city)"
-        }
-        return ""
-    }
-    
+
     func updateAddress() {
-        if ConnectionManager.shared.isConnected() {
+        
+        do {
             guard let location = lastLocation else { return }
-            
-            getAddress(location: location) {
-                self.userAnnotation.address = self.address
+            let geocoderManager = GeocoderManager()
+            try geocoderManager.getAddress(location: location) { (address) in
+                self.userAnnotation.address = address
                 self.userAnnotation.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                 self.updateCallout()
                 self.setRegion(location: location)
             }
-        } else {
-            presentConnectionAlert()
+        } catch GeocoderManagerErrors.noConnection {
+            alertManager.presentLocationPermissionAlert(in: self)
+        } catch {
+            // right now method throws just noConnection error, but maybe in future there will be more errors
+            alertManager.presentAlert(title: "Error", message: "We are sorry, something went wrong", in: self)
         }
     }
-    
-    //    MARK: - Alerts
-    
-    func presentLocationPermissionAlert() {
-        let alert = UIAlertController(title: "Location Permission", message: "Please authorize RSR to find your location while using the app", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default) { (action) in
-            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
-            
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                    if !success {
-                        print("error while opening settings")
-                    }
-                })
-            }
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        alert.addAction(cancelAction)
-        alert.addAction(okAction)
-        
-        present(alert,animated: true, completion: nil)
-    }
-    
-    func presentConnectionAlert() {
-        let alert = UIAlertController(title: "Internet error", message: "Unable to locate your address. Please check your internet connection", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        let retryAction = UIAlertAction(title: "Retry", style: .default) { (action) in
-            self.updateAddress()
-        }
-        alert.addAction(cancelAction)
-        alert.addAction(retryAction)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    
 
 }
 
@@ -229,13 +175,14 @@ extension MapViewController: CLLocationManagerDelegate {
         guard let location = locations.last  else { return }
         
         if let previousLocation = lastLocation {
-        
+            //
             if location.distance(from: previousLocation) > 20 {
                 self.lastLocation = location
                 self.updateAddress()
             }
             
         } else {
+            // first location
             userAnnotation.coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             self.mapView.addAnnotation(self.userAnnotation)
             self.mapView.selectAnnotation(self.userAnnotation, animated: true)
@@ -282,7 +229,7 @@ extension MapViewController: MKMapViewDelegate {
         let views = Bundle.main.loadNibNamed("AddressCallout", owner: nil, options: nil)
         let calloutView = views?[0] as! AddressCallout
         if let address = addressAnnotation.address {
-            calloutView.addressLabel.text = getStringAddress(address: address)
+            calloutView.addressLabel.text = address.getString()
         }
         calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
         view.addSubview(calloutView)
@@ -290,9 +237,8 @@ extension MapViewController: MKMapViewDelegate {
         
     }
     
-    // didDeselect method is used for updating callout
-    // selectAnnotation "disables" user to hide callout
-    
+    /// didDeselect method is used for updating callout (see updateCallout method)
+    /// selectAnnotation "disables" user to hide callout
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         if view.isKind(of: AddressAnnotationView.self) {
             for subview in view.subviews {

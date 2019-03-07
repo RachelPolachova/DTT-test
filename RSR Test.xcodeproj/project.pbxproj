@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC0C9978223180410022A02D /* GeocoderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C9977223180410022A02D /* GeocoderManager.swift */; };
+		CC0C997A223183180022A02D /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C9979223183180022A02D /* AlertManager.swift */; };
 		CC610ACE222A83D700F7C2C8 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC610ACD222A83D700F7C2C8 /* Address.swift */; };
-		CC610AD2222AF3D100F7C2C8 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC610AD1222AF3D100F7C2C8 /* Main_iPad.storyboard */; };
 		CC96E200222595500083F6C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC96E1FF222595500083F6C8 /* AppDelegate.swift */; };
 		CC96E202222595500083F6C8 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC96E201222595500083F6C8 /* MainMenuViewController.swift */; };
-		CC96E205222595500083F6C8 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC96E203222595500083F6C8 /* Main_iPhone.storyboard */; };
+		CC96E205222595500083F6C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC96E203222595500083F6C8 /* Main.storyboard */; };
 		CC96E207222595530083F6C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC96E206222595530083F6C8 /* Assets.xcassets */; };
 		CC96E20A222595530083F6C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC96E208222595530083F6C8 /* LaunchScreen.storyboard */; };
 		CC96E2122225A1FB0083F6C8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC96E2112225A1FB0083F6C8 /* MapViewController.swift */; };
@@ -23,12 +24,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC0C9977223180410022A02D /* GeocoderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocoderManager.swift; sourceTree = "<group>"; };
+		CC0C9979223183180022A02D /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		CC610ACD222A83D700F7C2C8 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
-		CC610AD1222AF3D100F7C2C8 /* Main_iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		CC96E1FC222595500083F6C8 /* RSR Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RSR Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC96E1FF222595500083F6C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC96E201222595500083F6C8 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
-		CC96E204222595500083F6C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		CC96E204222595500083F6C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CC96E206222595530083F6C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC96E209222595530083F6C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC96E20B222595530083F6C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,9 +57,8 @@
 			isa = PBXGroup;
 			children = (
 				CCFCA138222ED486000AA9BE /* AddressAnnotation */,
-				CC96E203222595500083F6C8 /* Main_iPhone.storyboard */,
+				CC96E203222595500083F6C8 /* Main.storyboard */,
 				CC96E208222595530083F6C8 /* LaunchScreen.storyboard */,
-				CC610AD1222AF3D100F7C2C8 /* Main_iPad.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -89,7 +90,7 @@
 		CC96E1FE222595500083F6C8 /* RSR Test */ = {
 			isa = PBXGroup;
 			children = (
-				CCFCA135222EC86F000AA9BE /* Connection Manager */,
+				CCFCA135222EC86F000AA9BE /* Managers */,
 				CC610ACC222A83C600F7C2C8 /* Model */,
 				CC4B8DF02226CD4B007F0CE7 /* View */,
 				CC96E2132225A20A0083F6C8 /* Controllers */,
@@ -109,12 +110,14 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		CCFCA135222EC86F000AA9BE /* Connection Manager */ = {
+		CCFCA135222EC86F000AA9BE /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				CCFCA136222EC887000AA9BE /* ConnectionManager.swift */,
+				CC0C9977223180410022A02D /* GeocoderManager.swift */,
+				CC0C9979223183180022A02D /* AlertManager.swift */,
 			);
-			path = "Connection Manager";
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		CCFCA138222ED486000AA9BE /* AddressAnnotation */ = {
@@ -187,10 +190,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC96E20A222595530083F6C8 /* LaunchScreen.storyboard in Resources */,
-				CC610AD2222AF3D100F7C2C8 /* Main_iPad.storyboard in Resources */,
 				CC96E207222595530083F6C8 /* Assets.xcassets in Resources */,
 				CCB12730222D7362001FDAF3 /* AddressCallout.xib in Resources */,
-				CC96E205222595500083F6C8 /* Main_iPhone.storyboard in Resources */,
+				CC96E205222595500083F6C8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +205,8 @@
 			files = (
 				CC96E202222595500083F6C8 /* MainMenuViewController.swift in Sources */,
 				CC96E2122225A1FB0083F6C8 /* MapViewController.swift in Sources */,
+				CC0C997A223183180022A02D /* AlertManager.swift in Sources */,
+				CC0C9978223180410022A02D /* GeocoderManager.swift in Sources */,
 				CCB12727222D5147001FDAF3 /* AddressAnnotation.swift in Sources */,
 				CC96E200222595500083F6C8 /* AppDelegate.swift in Sources */,
 				CCFCA137222EC887000AA9BE /* ConnectionManager.swift in Sources */,
@@ -215,12 +219,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CC96E203222595500083F6C8 /* Main_iPhone.storyboard */ = {
+		CC96E203222595500083F6C8 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CC96E204222595500083F6C8 /* Base */,
 			);
-			name = Main_iPhone.storyboard;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		CC96E208222595530083F6C8 /* LaunchScreen.storyboard */ = {

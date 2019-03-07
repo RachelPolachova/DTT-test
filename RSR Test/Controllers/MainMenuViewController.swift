@@ -23,6 +23,7 @@ class MainMenuViewController: UIViewController {
         if UIDevice.current.userInterfaceIdiom == .phone {
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "navig_bar_back")?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .stretch), for: UIBarMetrics.default)
         } else {
+            self.navigationItem.rightBarButtonItem = nil
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "navig_bar_back_ipad")?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .stretch), for: UIBarMetrics.default)
         }
     }

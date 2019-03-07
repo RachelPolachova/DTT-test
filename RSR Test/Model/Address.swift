@@ -18,4 +18,8 @@ struct Address {
         self.city = city
         self.postalCode = postalCode
     }
+    
+    func getString() -> String {
+        return "\(self.streetName), \(self.postalCode), \(self.city)"
+    }
 }
