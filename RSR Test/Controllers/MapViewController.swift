@@ -102,15 +102,6 @@ class MapViewController: UIViewController {
         self.mapView.setRegion(region, animated: true)
     }
     
-    
-    /// to update callout didSelect (mapView delegate) method must be triggered
-    ///
-    /// to prevent "multiple views" of callout, annotation has to be deselected first
-    /// select annotation method is called in didDeselect method (also to disable user to hide callout)
-    func updateCallout() {
-        self.mapView.deselectAnnotation(userAnnotation, animated: false)
-    }
-    
     //    MARK: - Location Manager methods
     
     func checkLocationServices() {
@@ -142,7 +133,7 @@ class MapViewController: UIViewController {
         }
     }
     
-    //    MARK: - Address methods
+    //    MARK: - Annotation methods
     
 
     func updateAddress() {
@@ -163,6 +154,14 @@ class MapViewController: UIViewController {
             alertManager.presentAlert(title: "Error", message: "We are sorry, something went wrong", in: self)
         }
     }
+    
+    /// to update callout didSelect (mapView delegate) method must be triggered
+    /// to prevent "multiple views" of callout, annotation has to be deselected first
+    ///
+    /// select annotation method is called in didDeselect method (also to disable user to hide callout)
+    func updateCallout() {
+        self.mapView.deselectAnnotation(userAnnotation, animated: false)
+    }
 
 }
 
@@ -175,7 +174,6 @@ extension MapViewController: CLLocationManagerDelegate {
         guard let location = locations.last  else { return }
         
         if let previousLocation = lastLocation {
-            //
             if location.distance(from: previousLocation) > 20 {
                 self.lastLocation = location
                 self.updateAddress()
@@ -206,9 +204,8 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        if annotation is MKUserLocation {
-            return nil
-        }
+        if annotation is MKUserLocation { return nil }
+        
         var annotationView = self.mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
         
         if annotationView == nil {
